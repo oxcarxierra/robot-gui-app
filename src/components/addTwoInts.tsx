@@ -37,9 +37,6 @@ const AddTwoInts = () =>{
     })
   }
 
-
-
-
   const requestAdd = () =>{
     if (status !== 'Connected!') {
       connect()
