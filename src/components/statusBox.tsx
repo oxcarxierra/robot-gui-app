@@ -11,7 +11,7 @@ const StatusBox = () => {
   return (
       <div>
         <span>{connectionStatus==='connected'?'🟢':'🔴'} </span>
-        <span>{connectionStatus==='connecting'?"Connecting":connectionStatus+' to ROS2 server'}</span>
+        <span>{connectionStatus+' to ROS2 server'}</span>
       </div>
       
   )
