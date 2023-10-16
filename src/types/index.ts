@@ -10,3 +10,6 @@ export type RobotStatusType = {
   };
   product: ProductType;
 };
+
+export type StatusType = 'connecting'|'connected'|'disconnected';
+

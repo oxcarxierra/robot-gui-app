@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import ROSLIB from 'roslib'
+import './../index.css'
+import useROS from '../hooks/useROS'
 
-const AddTwoInts = () =>{
-  const [status, setStatus] = useState("Not connected")
+const ServiceRequstBox = () =>{
   const [number, setNumber] = useState({ a: 0, b: 0})
   const [sum, setSum] = useState(0)
 
-  const ros = new ROSLIB.Ros({})
-
+  const {ros, connectServer} = useROS();
+  const requestURL = '/add_two_ints';
   const convert = (input:string) =>{
     if (input.charAt(0) === "-") {
         let x = input.slice(0)
@@ -17,34 +18,11 @@ const AddTwoInts = () =>{
       }
     }
 
-  const connect = () => {
-    ros.connect("ws://localhost:9090")
-    // won't let the user connect more than once
-    ros.on('error', (error) =>{
-      console.log(error)
-      setStatus(error)
-    })
-
-    // Find out exactly when we made a connection.
-    ros.on('connection', () => {
-      console.log('Connected!')
-      setStatus("Connected!")
-    })
-
-    ros.on('close',  ()=> {
-      console.log('Connection closed')
-      setStatus("Connection closed")
-    })
-  }
-
   const requestAdd = () =>{
-    if (status !== 'Connected!') {
-      connect()
-    }
-
+    connectServer();
     const addTwoIntsClient = new ROSLIB.Service({
       ros : ros,
-      name : '/add_two_ints',
+      name : requestURL,
       serviceType : 'example_interface/AddTwoInts'
     });
 
@@ -60,21 +38,19 @@ const AddTwoInts = () =>{
         + result.sum);
       setSum(result.sum)
     })
-
   };
 
   return (
   <div>
-    <div>
-      {status}
-    </div>
+    <h3>Client Test</h3>
     <p>Add two numbers:</p>
     <label>a</label>
     <input name={"linear"} type={"number"} value={number.a} onChange={(ev) => setNumber({...number, a: convert(ev.target.value)})}/>
+    <br></br>
     <label>b</label>
     <input name={"linear"} type={"number"} value={number.b} onChange={(ev) => setNumber({...number, b: convert(ev.target.value)})}/>
     <br />
-    <button onClick={() => requestAdd()}>Publish</button>
+    <button onClick={() => requestAdd()}>Request to : {requestURL}</button>
     <br/>
     <p>Result:</p>
     <div>{sum}</div>
@@ -82,4 +58,4 @@ const AddTwoInts = () =>{
   )
 }
 
-export default AddTwoInts
+export default ServiceRequstBox

@@ -1,16 +1,20 @@
-import React, { useEffect, useState } from 'react';
 import './App.css';
-import ROSLIB from 'roslib';
-import AddTwoInts from './components/addTwoInts';
-import SeroUI from './components/seroUI';
+import SubscriberBox from './components/subscriberBox';
+import PublisherBox from './components/publisherBox';
+import StatusBox from './components/statusBox';
+import ServiceRequstBox from './components/serviceRequestBox';
 
 const App = () => {
   return (
     <div className="App">
-      {/* <header className="App-header">
-      </header> */}
-      {/* <AddTwoInts /> */}
-      <SeroUI />
+      <div className="container">
+        <StatusBox />
+        {/* <SeroUI /> */}
+        <SubscriberBox />
+        <PublisherBox />
+                <ServiceRequstBox />
+
+      </div>
     </div>
   );
 }

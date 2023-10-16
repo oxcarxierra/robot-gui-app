@@ -40,7 +40,6 @@ const SeroUI = () => {
     })
   }
 
-
   // const getProductData = async () => {
   //   try {
   //     const res = await axios.get<RobotStatusType>(BASE_URL);
