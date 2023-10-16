@@ -50,10 +50,11 @@ const ServiceRequstBox = () =>{
     <label>b</label>
     <input name={"linear"} type={"number"} value={number.b} onChange={(ev) => setNumber({...number, b: convert(ev.target.value)})}/>
     <br />
+    <br />
     <button onClick={() => requestAdd()}>Request to : {requestURL}</button>
     <br/>
-    <p>Result:</p>
-    <div>{sum}</div>
+    <p>Response:</p>
+    <h4>{sum}</h4>
   </div>
   )
 }
