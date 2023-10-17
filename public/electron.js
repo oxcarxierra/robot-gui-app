@@ -22,7 +22,9 @@ function createWindow() {
     height: 1024,
     title: "Robot-GUI-Demo"
   });
+
   mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
+
   mainWindow.on('closed', function () {
     mainWindow = null
   })

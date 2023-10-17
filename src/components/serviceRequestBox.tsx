@@ -3,7 +3,7 @@ import ROSLIB from 'roslib'
 import './../index.css'
 import useROS from '../hooks/useROS'
 
-const ServiceRequstBox = () =>{
+const ServiceRequestBox = () =>{
   const [number, setNumber] = useState({ a: 0, b: 0})
   const [sum, setSum] = useState(0)
 
@@ -37,12 +37,15 @@ const ServiceRequstBox = () =>{
         + ': '
         + result.sum);
       setSum(result.sum)
+    },
+    (err)=>{
+      console.error(err)
     })
   };
 
   return (
   <div>
-    <h3>Client Test</h3>
+    <h3>Service Client Test</h3>
     <p>Add two numbers:</p>
     <label>a</label>
     <input name={"linear"} type={"number"} value={number.a} onChange={(ev) => setNumber({...number, a: convert(ev.target.value)})}/>
@@ -59,4 +62,4 @@ const ServiceRequstBox = () =>{
   )
 }
 
-export default ServiceRequstBox
+export default ServiceRequestBox
