@@ -1,1 +1,5 @@
-## react web app that can be connected with ROSLIB server
+## ROS2 Server User Interface
+
+- React web app
+- Can be installed as Ubuntu software using `Electron` & `Electron-Forge`
+- `ROSLIB` for interacting with ROS2 nodes
