@@ -1,9 +1,9 @@
-import './App.css';
-import SubscriberBox from './components/subscriberBox';
-import PublisherBox from './components/publisherBox';
-import StatusBox from './components/statusBox';
-import ServiceRequestBox from './components/serviceRequestBox';
-import ActionSendGoalBox from './components/actionSendGoalBox';
+import './App.css'
+import SubscriberBox from './components/subscriberBox'
+import PublisherBox from './components/publisherBox'
+import StatusBox from './components/statusBox'
+import ServiceRequestBox from './components/serviceRequestBox'
+import ActionSendGoalBox from './components/actionSendGoalBox'
 
 const App = () => {
   return (
@@ -17,7 +17,7 @@ const App = () => {
         {/* <ActionSendGoalBox /> */}
       </div>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

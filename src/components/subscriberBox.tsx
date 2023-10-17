@@ -1,43 +1,39 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react'
 import './../index.css'
-import ROSLIB from "roslib";
-import useROS from "../hooks/useROS";
+import ROSLIB from 'roslib'
+import useROS from '../hooks/useROS'
 
 const SubscriberBox = () => {
-  const [msg, setMsg] = useState<String>('');
-  const {ros, connectServer, connectionStatus} = useROS();
+  const [msg, setMsg] = useState<String>('')
+  const { ros, connectServer, connectionStatus } = useROS()
 
   const topicURL = '/txt_msg'
 
   const topic = new ROSLIB.Topic({
-    ros:ros,
-    name:topicURL,
-    messageType:'std_msgs/String'
-  });
+    ros: ros,
+    name: topicURL,
+    messageType: 'std_msgs/String',
+  })
 
-  const subscribeTopic = () =>{
-      topic.subscribe((res:any)=>{
-        console.log(res);
-          setMsg(res.data);
-        });
+  const subscribeTopic = () => {
+    topic.subscribe((res: any) => {
+      // console.log(res);
+      setMsg(res.data)
+    })
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     connectServer()
-    subscribeTopic();
-  },[])
+    subscribeTopic()
+  }, [])
 
   return (
     <div className="section">
       <h3>Subscriber Test</h3>
-        {connectionStatus==='connected' && <h4>Subscribing to : {topicURL}</h4>}
-      <div>
-        {msg}
-      </div>
+      {connectionStatus === 'connected' && <h4>Subscribing to : {topicURL}</h4>}
+      <div>{msg}</div>
     </div>
-  );
-};
-
-
+  )
+}
 
 export default SubscriberBox
